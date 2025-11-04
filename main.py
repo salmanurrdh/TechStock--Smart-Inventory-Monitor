@@ -35,7 +35,7 @@ def barang_keluar():
         inventory[idx]["jumlah"] -= jumlah
         print(f"Stok '{inventory[idx]['nama']}' berkurang sebanyak {jumlah}.\n")
     else:
-        print("⚠ Jumlah keluar melebihi stok tersedia!\n")
+        print("Jumlah keluar melebihi stok tersedia!\n")
 
 def tampilkan_barang():
     print("\n=== DAFTAR INVENTARIS ===")
@@ -43,7 +43,7 @@ def tampilkan_barang():
         print("Belum ada data barang.\n")
         return
     for i, b in enumerate(inventory):
-        status = "⚠ Stok Menipis!" if b["jumlah"] <= b["batas_min"] else "Aman"
+        status = "Stok Menipis!" if b["jumlah"] <= b["batas_min"] else "Aman"
         print(f"{i+1}. {b['nama']} | Stok: {b['jumlah']} | Harga: Rp{b['harga']:.2f} | {status}")
     print()
 
@@ -79,4 +79,4 @@ while True:
         print("Terima kasih telah menggunakan Smart Inventory Monitor!\n")
         break
     else:
-        print("⚠ Pilihan tidak valid. Silakan coba lagi.\n")
+        print("Pilihan tidak valid. Silakan coba lagi.\n")
