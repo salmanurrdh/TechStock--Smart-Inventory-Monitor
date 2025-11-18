@@ -2,11 +2,15 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+from app.database import init_database
 from app.tambah_barang import tambah_barang
 from app.barang_masuk import barang_masuk
 from app.barang_keluar import barang_keluar
 from app.tampilkan_barang import tampilkan_barang
 from app.laporan_aset import laporan_aset
+
+# Initialize database saat aplikasi start
+init_database()
 
 while True:
     print("""
