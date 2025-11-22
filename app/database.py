@@ -92,23 +92,21 @@ def get_total_asset():
     conn.close()
     return total
 
-def hapus_barang(item_id):
-    """Hapus barang berdasarkan ID"""
+def hapus_barang_nama(nama_barang):
+    """Hapus barang berdasarkan nama"""
     conn = get_connection()
     cursor = conn.cursor()
 
-    # cek apakah barang ada
-    cursor.execute("SELECT nama FROM inventory WHERE id = ?", (item_id,))
+    cursor.execute("SELECT id FROM inventory WHERE nama = ?", (nama_barang,))
     result = cursor.fetchone()
 
     if not result:
-        print(f"Barang dengan ID {item_id} tidak ditemukan.")
+        print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
         conn.close()
         return False
 
-    # eksekusi hapus
-    cursor.execute("DELETE FROM inventory WHERE id = ?", (item_id,))
+    cursor.execute("DELETE FROM inventory WHERE nama = ?", (nama_barang,))
     conn.commit()
     conn.close()
-    print(f"Barang '{result[0]}' berhasil dihapus.")
+    print(f"Barang '{nama_barang}' berhasil dihapus.")
     return True
