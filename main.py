@@ -7,6 +7,7 @@ from app.tambah_barang import tambah_barang
 from app.barang_masuk import barang_masuk
 from app.barang_keluar import barang_keluar
 from app.tampilkan_barang import tampilkan_barang
+from app.hapus_barang import menu_hapus_barang
 from app.laporan_aset import laporan_aset
 
 # Initialize database saat aplikasi start
@@ -20,7 +21,8 @@ while True:
 3. Barang Keluar
 4. Lihat Daftar Barang
 5. Laporan Nilai Aset
-6. Keluar
+6. Hapus Barang
+7. Keluar
 ===========================================
 """)
     pilih = input("Pilih menu: ")
@@ -36,6 +38,8 @@ while True:
     elif pilih == "5":
         laporan_aset()
     elif pilih == "6":
+        menu_hapus_barang()
+    elif pilih == "7":
         print("Terima kasih telah menggunakan Smart Inventory Monitor!\n")
         break
     else:
