@@ -10,7 +10,12 @@ from app.tampilkan_barang import tampilkan_barang
 from app.hapus_barang import menu_hapus_barang
 from app.laporan_aset import laporan_aset
 
-# Initialize database saat aplikasi start
+def konfirmasi_menu(nama_menu):
+    """Fungsi untuk konfirmasi sebelum menjalankan menu apapun"""
+    print(f"\nAnda memilih '{nama_menu}'")
+    konfirmasi = input("Apakah ini menu yang benar? (y/n) =  ").lower()
+    return konfirmasi == 'y'
+
 init_database()
 
 while True:
@@ -25,22 +30,28 @@ while True:
 7. Keluar
 ===========================================
 """)
-    pilih = input("Pilih menu: ")
+    pilih = input("Pilih menu (1-7): ")
 
-    if pilih == "1":
-        tambah_barang()
-    elif pilih == "2":
-        barang_masuk()
-    elif pilih == "3":
-        barang_keluar()
-    elif pilih == "4":
-        tampilkan_barang()
-    elif pilih == "5":
-        laporan_aset()
-    elif pilih == "6":
-        menu_hapus_barang()
-    elif pilih == "7":
-        print("Terima kasih telah menggunakan Smart Inventory Monitor!\n")
-        break
+    menu_options = {
+        "1": ("Tambah Barang", tambah_barang),
+        "2": ("Barang Masuk", barang_masuk),
+        "3": ("Barang Keluar", barang_keluar),
+        "4": ("Lihat Daftar Barang", tampilkan_barang),
+        "5": ("Laporan Nilai Aset", laporan_aset),
+        "6": ("Hapus Barang", menu_hapus_barang),
+        "7": ("Keluar dari Aplikasi", None)
+    }
+
+    if pilih in menu_options:
+        nama_menu, fungsi_menu = menu_options[pilih]
+        
+        if konfirmasi_menu(nama_menu):
+            if pilih == "7":
+                print("Terima kasih telah menggunakan Smart Inventory Monitor!\n")
+                break
+            else:
+                fungsi_menu()  
+        else:
+            print("Dibatalkan oleh pengguna")
     else:
-        print("Pilihan tidak valid. Silakan coba lagi.\n")
+        print("Pilihan tidak valid. Silakan pilih 1-7.\n")
